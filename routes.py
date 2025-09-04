@@ -2,11 +2,50 @@ from flask import render_template, request, jsonify, redirect, url_for, session
 from app import app
 from scam_analyzer import analyze_scam_indicators
 import logging
+import markdown
+import os
 
 @app.route('/')
 def index():
     """Landing page with prominent scam check button"""
     return render_template('index.html')
+
+@app.route('/learn')
+def learn():
+    """Educational content about common scams"""
+    try:
+        # Read the markdown content
+        content_path = os.path.join('content', 'top_10_scams.md')
+        with open(content_path, 'r', encoding='utf-8') as f:
+            markdown_content = f.read()
+        
+        # Convert markdown to HTML with senior-friendly styling
+        html_content = markdown.markdown(markdown_content, extensions=['extra'])
+        
+        # Add senior-friendly CSS classes to the HTML
+        html_content = format_scam_content(html_content)
+        
+        return render_template('learn.html', scam_content=html_content)
+        
+    except Exception as e:
+        logging.error(f"Error loading scam content: {str(e)}")
+        return render_template('learn.html', 
+                             scam_content="<p>Unable to load educational content. Please try again later.</p>")
+
+def format_scam_content(html_content):
+    """Add senior-friendly styling classes to the generated HTML"""
+    # Add classes for better styling
+    html_content = html_content.replace('<h1>', '<h1 class="display-4 fw-bold text-primary mb-4">')
+    html_content = html_content.replace('<h2>', '<h2 class="h3 fw-bold text-dark mt-5 mb-3 border-bottom border-2 border-primary pb-2">')
+    html_content = html_content.replace('<p><strong>Summary:</strong>', '<div class="alert alert-info"><p class="mb-0 fs-5"><strong>Summary:</strong>')
+    html_content = html_content.replace('<p><strong>How it works:</strong>', '</div><div class="mt-3 mb-3"><h4 class="text-danger mb-2">How it works:</h4><ul class="list-group list-group-flush">')
+    html_content = html_content.replace('<p><strong>Red Flags:</strong>', '</ul></div><div class="mt-3 mb-3"><h4 class="text-warning mb-2">Red Flags:</h4><ul class="list-group list-group-flush">')
+    html_content = html_content.replace('<p><strong>What to Do:</strong>', '</ul></div><div class="mt-3 mb-3"><h4 class="text-success mb-2">What to Do:</h4><ul class="list-group list-group-flush">')
+    html_content = html_content.replace('<p><strong>Quick Script:</strong>', '</ul></div><div class="alert alert-primary mt-3"><h5>Quick Script:</h5>')
+    html_content = html_content.replace('<p><strong>Report &amp; Help:</strong>', '</div><div class="alert alert-secondary mt-3"><h5>Report & Help:</h5>')
+    html_content = html_content.replace('<p><strong>Prevention Tips</strong>', '<div class="alert alert-success mt-5 p-4"><h3 class="text-center mb-4">Prevention Tips</h3>')
+    
+    return html_content
 
 @app.route('/questionnaire')
 def questionnaire():

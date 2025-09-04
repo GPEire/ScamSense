@@ -383,6 +383,28 @@ body {
     color: #555 !important;
 }
 
+/* CTA card styling */
+.cta-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.cta-card .btn {
+    transition: all 0.2s ease;
+    border: 2px solid white;
+}
+
+.cta-card .btn:hover {
+    background-color: transparent !important;
+    color: white !important;
+    border-color: white;
+}
+
 .bg-light {
     background-color: #f5f5f5 !important;
 }

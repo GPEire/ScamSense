@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Learn About Scams - Scam Checker{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0">
+    <!-- Hero Section -->
+    <div class="hero-section bg-primary text-white py-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="fas fa-graduation-cap me-3"></i>
+                        Learn About Common Scams
+                    </h1>
+                    <p class="lead fs-3 mb-4">
+                        Knowledge is your best defense. Learn to recognize the most common scams targeting seniors.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="hero-icon">
+                        <i class="fas fa-shield-alt fa-8x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <!-- Print Button -->
+                <div class="text-center mb-5">
+                    <button class="btn btn-outline-primary btn-lg px-4" onclick="window.print()" id="print-button">
+                        <i class="fas fa-print me-2"></i>
+                        Print This Guide
+                    </button>
+                </div>
+
+                <!-- Emergency Contact Banner -->
+                <div class="alert alert-danger border-3 mb-5" role="alert">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="alert-heading mb-2">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                If You've Been Scammed
+                            </h4>
+                            <p class="mb-0 fs-5">
+                                Stop all contact immediately. Don't feel embarrassed - scammers are very skilled.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center mt-3 mt-md-0">
+                            <div class="d-grid gap-2">
+                                <a href="tel:1800595160" class="btn btn-light btn-lg fw-bold">
+                                    <i class="fas fa-phone me-2"></i>
+                                    Call IDCARE
+                                    <br><small>1800 595 160</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scam Content -->
+                <div class="scam-content">
+                    {{ scam_content|safe }}
+                </div>
+
+                <!-- Bottom Action Section -->
+                <div class="action-section bg-light p-5 rounded-4 text-center mt-5">
+                    <h3 class="mb-4">
+                        <i class="fas fa-question-circle text-primary me-2"></i>
+                        Have a Suspicious Message?
+                    </h3>
+                    <p class="fs-5 mb-4">
+                        Use our guided checker to get personalized advice about whether a message might be a scam.
+                    </p>
+                    <a href="{{ url_for('questionnaire') }}" class="btn btn-primary btn-lg px-5">
+                        <i class="fas fa-search me-2"></i>
+                        Check a Message
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Print styles */
+@media print {
+    .hero-section, .btn, .action-section, .alert {
+        display: none !important;
+    }
+    
+    .scam-content {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+    }
+    
+    .scam-content h2 {
+        page-break-before: always;
+        margin-top: 0 !important;
+    }
+    
+    .scam-content h2:first-of-type {
+        page-break-before: avoid;
+    }
+}
+</style>
+{% endblock %}
