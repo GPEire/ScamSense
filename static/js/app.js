@@ -1,4 +1,4 @@
-// Senior-friendly JavaScript for dynamic scam checker form
+// Senior-friendly JavaScript for dynamic scam checker form (v1.1)
 
 let currentStep = 1;
 const totalSteps = 5;
@@ -234,9 +234,13 @@ function validateStep(stepNumber) {
     let isValid = true;
     const errors = [];
     
+    // Declare all variables at the top to avoid scope issues
+    let messageType, form, selectedMessageType, emailInput, phoneInput, mainRequest;
+    let step4Fields, step4Missing, step5Fields, step5Missing;
+    
     switch(stepNumber) {
         case 1:
-            const messageType = document.querySelector('input[name="message_type"]:checked');
+            messageType = document.querySelector('input[name="message_type"]:checked');
             if (!messageType) {
                 errors.push('Please select what type of message you received.');
                 isValid = false;
@@ -245,17 +249,17 @@ function validateStep(stepNumber) {
             
         case 2:
             // Validate email and phone inputs if they have values
-            const form = document.getElementById('dynamic-form');
-            const messageType = form.getAttribute('data-message-type');
+            form = document.getElementById('dynamic-form');
+            selectedMessageType = form.getAttribute('data-message-type');
             
-            if (messageType === 'email') {
-                const emailInput = document.getElementById('email_address');
+            if (selectedMessageType === 'email') {
+                emailInput = document.getElementById('email_address');
                 if (emailInput && emailInput.value && !validateEmailInput(emailInput)) {
                     isValid = false;
                     errors.push('Please enter a valid email address.');
                 }
-            } else if (messageType === 'phone_call' || messageType === 'text_message') {
-                const phoneInput = messageType === 'phone_call' ? 
+            } else if (selectedMessageType === 'phone_call' || selectedMessageType === 'text_message') {
+                phoneInput = selectedMessageType === 'phone_call' ? 
                     document.getElementById('phone_number') : 
                     document.getElementById('text_number');
                 if (phoneInput && phoneInput.value && !validatePhoneInput(phoneInput)) {
@@ -266,7 +270,7 @@ function validateStep(stepNumber) {
             break;
             
         case 3:
-            const mainRequest = document.getElementById('main_request');
+            mainRequest = document.getElementById('main_request');
             if (mainRequest && mainRequest.value.trim() === '') {
                 errors.push('Please describe what the message asked you to do.');
                 isValid = false;
@@ -276,8 +280,8 @@ function validateStep(stepNumber) {
             
         case 4:
             // Check that at least some radio buttons are selected
-            const step4Fields = ['asks_for_money', 'asks_for_personal_info', 'requests_immediate_payment'];
-            const step4Missing = step4Fields.filter(field => 
+            step4Fields = ['asks_for_money', 'asks_for_personal_info', 'requests_immediate_payment'];
+            step4Missing = step4Fields.filter(field => 
                 !document.querySelector(`input[name="${field}"]:checked`)
             );
             
@@ -289,9 +293,9 @@ function validateStep(stepNumber) {
             
         case 5:
             // Check that remaining questions are answered
-            const step5Fields = ['urgent_action_required', 'threatens_consequences', 'offers_unexpected_prize', 
+            step5Fields = ['urgent_action_required', 'threatens_consequences', 'offers_unexpected_prize', 
                                 'sender_unknown', 'poor_grammar_spelling', 'suspicious_links', 'requests_secrecy'];
-            const step5Missing = step5Fields.filter(field => 
+            step5Missing = step5Fields.filter(field => 
                 !document.querySelector(`input[name="${field}"]:checked`)
             );
             
@@ -311,12 +315,12 @@ function validateStep(stepNumber) {
 
 function validateAllSteps() {
     // Final validation before submission
-    const messageType = document.querySelector('input[name="message_type"]:checked');
+    const selectedType = document.querySelector('input[name="message_type"]:checked');
     const mainRequest = document.getElementById('main_request');
     
     const errors = [];
     
-    if (!messageType) {
+    if (!selectedType) {
         errors.push('Please select the message type.');
     }
     
