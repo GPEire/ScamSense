@@ -105,8 +105,10 @@
 
                         <div class="mb-4">
                             <label for="phone_number" class="form-label fs-5">What phone number did they call from? (Optional)</label>
-                            <input type="text" class="form-control form-control-lg" id="phone_number" name="sender_info" 
-                                   placeholder="Example: 1800 123 456 or Unknown">
+                            <input type="tel" class="form-control form-control-lg" id="phone_number" name="sender_info" 
+                                   placeholder="Example: 1800 123 456 or Unknown"
+                                   pattern="[0-9\s\-\+\(\)]*"
+                                   title="Please enter a valid phone number">
                         </div>
                     </div>
                 </div>
@@ -121,8 +123,9 @@
                         
                         <div class="mb-4">
                             <label for="email_address" class="form-label fs-5">What email address did it come from? (Optional)</label>
-                            <input type="text" class="form-control form-control-lg" id="email_address" name="sender_info" 
-                                   placeholder="Example: support@company.com.au">
+                            <input type="email" class="form-control form-control-lg" id="email_address" name="sender_info" 
+                                   placeholder="Example: support@company.com.au"
+                                   title="Please enter a valid email address">
                         </div>
 
                         <div class="mb-4">
@@ -143,8 +146,10 @@
                         
                         <div class="mb-4">
                             <label for="text_number" class="form-label fs-5">What number sent the text? (Optional)</label>
-                            <input type="text" class="form-control form-control-lg" id="text_number" name="sender_info" 
-                                   placeholder="Example: 0400 123 456 or short code like 12345">
+                            <input type="tel" class="form-control form-control-lg" id="text_number" name="sender_info" 
+                                   placeholder="Example: 0400 123 456 or short code like 12345"
+                                   pattern="[0-9\s\-\+\(\)]*"
+                                   title="Please enter a valid phone number or short code">
                         </div>
 
                         <div class="mb-4">
@@ -323,6 +328,7 @@
                     </p>
 
                     <div class="checklist-container">
+                        <!-- Common questions for all message types -->
                         <div class="checklist-item">
                             <span class="checklist-question">Did they say you must act immediately or something bad will happen?</span>
                             <div class="checklist-options">
@@ -364,32 +370,34 @@
                         </div>
 
                         <div class="checklist-item">
-                            <span class="checklist-question">Did the message have poor grammar or spelling mistakes?</span>
-                            <div class="checklist-options">
-                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_yes" value="yes">
-                                <label class="btn btn-outline-danger" for="grammar_yes">Yes</label>
-                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_no" value="no">
-                                <label class="btn btn-outline-success" for="grammar_no">No</label>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item">
-                            <span class="checklist-question">Did they ask you to click on links or download something?</span>
-                            <div class="checklist-options">
-                                <input type="radio" class="btn-check" name="suspicious_links" id="links_yes" value="yes">
-                                <label class="btn btn-outline-danger" for="links_yes">Yes</label>
-                                <input type="radio" class="btn-check" name="suspicious_links" id="links_no" value="no">
-                                <label class="btn btn-outline-success" for="links_no">No</label>
-                            </div>
-                        </div>
-
-                        <div class="checklist-item">
                             <span class="checklist-question">Did they ask you not to tell anyone else about this?</span>
                             <div class="checklist-options">
                                 <input type="radio" class="btn-check" name="requests_secrecy" id="secrecy_yes" value="yes">
                                 <label class="btn btn-outline-danger" for="secrecy_yes">Yes</label>
                                 <input type="radio" class="btn-check" name="requests_secrecy" id="secrecy_no" value="no">
                                 <label class="btn btn-outline-success" for="secrecy_no">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Email and text message specific question -->
+                        <div class="checklist-item" id="links-question" style="display: none;">
+                            <span class="checklist-question">Did they ask you to click on links or download something?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="suspicious_links" id="suspicious_links_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="suspicious_links_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="suspicious_links" id="suspicious_links_no" value="no">
+                                <label class="btn btn-outline-success" for="suspicious_links_no">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Written communication specific question -->
+                        <div class="checklist-item" id="grammar-question" style="display: none;">
+                            <span class="checklist-question">Did the message have poor grammar or spelling mistakes?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="grammar_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_no" value="no">
+                                <label class="btn btn-outline-success" for="grammar_no">No</label>
                             </div>
                         </div>
                     </div>

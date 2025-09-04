@@ -363,6 +363,21 @@ body {
     outline-offset: 2px;
 }
 
+/* Input validation styles */
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
 /* Improved color contrast */
 .text-muted {
     color: #555 !important;

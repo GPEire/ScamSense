@@ -128,9 +128,11 @@ function showStep(stepNumber) {
     // Update progress bar
     updateProgressBar(stepNumber);
     
-    // Handle conditional questions for step 2
+    // Handle conditional questions for step 2 and step 5
     if (stepNumber === 2) {
         showConditionalQuestions();
+    } else if (stepNumber === 5) {
+        showConditionalStep5Questions();
     }
     
     // Set current step
@@ -159,6 +161,32 @@ function showConditionalQuestions() {
             break;
         case 'letter':
             document.getElementById('letter-questions').style.display = 'block';
+            break;
+    }
+}
+
+function showConditionalStep5Questions() {
+    const form = document.getElementById('dynamic-form');
+    const messageType = form.getAttribute('data-message-type');
+    
+    // Hide all conditional questions in step 5
+    document.getElementById('links-question').style.display = 'none';
+    document.getElementById('grammar-question').style.display = 'none';
+    
+    // Show relevant questions based on message type
+    switch(messageType) {
+        case 'email':
+        case 'text_message':
+            // Show links question for email and text
+            document.getElementById('links-question').style.display = 'block';
+            document.getElementById('grammar-question').style.display = 'block';
+            break;
+        case 'letter':
+            // Show grammar question for letters (written communication)
+            document.getElementById('grammar-question').style.display = 'block';
+            break;
+        case 'phone_call':
+            // No additional questions for phone calls
             break;
     }
 }
@@ -216,7 +244,25 @@ function validateStep(stepNumber) {
             break;
             
         case 2:
-            // Step 2 is optional for most fields, so it's always valid
+            // Validate email and phone inputs if they have values
+            const form = document.getElementById('dynamic-form');
+            const messageType = form.getAttribute('data-message-type');
+            
+            if (messageType === 'email') {
+                const emailInput = document.getElementById('email_address');
+                if (emailInput && emailInput.value && !validateEmailInput(emailInput)) {
+                    isValid = false;
+                    errors.push('Please enter a valid email address.');
+                }
+            } else if (messageType === 'phone_call' || messageType === 'text_message') {
+                const phoneInput = messageType === 'phone_call' ? 
+                    document.getElementById('phone_number') : 
+                    document.getElementById('text_number');
+                if (phoneInput && phoneInput.value && !validatePhoneInput(phoneInput)) {
+                    isValid = false;
+                    errors.push('Please enter a valid phone number.');
+                }
+            }
             break;
             
         case 3:
@@ -351,8 +397,77 @@ function initializeAccessibility() {
 }
 
 function initializeFormValidation() {
-    // Additional validation is handled in the step validation functions
+    // Add real-time input validation
+    addInputValidation();
     console.log('Form validation initialized');
+}
+
+function addInputValidation() {
+    // Email validation
+    const emailInput = document.getElementById('email_address');
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            validateEmailInput(this);
+        });
+    }
+    
+    // Phone number validation
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+    phoneInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validatePhoneInput(this);
+        });
+    });
+}
+
+function validateEmailInput(input) {
+    if (input.value && !isValidEmail(input.value)) {
+        showInputError(input, 'Please enter a valid email address');
+        return false;
+    } else {
+        clearInputError(input);
+        return true;
+    }
+}
+
+function validatePhoneInput(input) {
+    if (input.value && !isValidPhone(input.value)) {
+        showInputError(input, 'Please enter a valid phone number');
+        return false;
+    } else {
+        clearInputError(input);
+        return true;
+    }
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+    // Allow phone numbers, 'Unknown', 'Private', etc.
+    const phoneRegex = /^[\d\s\-\+\(\)]+$|^(unknown|private|blocked|withheld)$/i;
+    return phoneRegex.test(phone);
+}
+
+function showInputError(input, message) {
+    clearInputError(input);
+    input.classList.add('is-invalid');
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'invalid-feedback';
+    errorDiv.textContent = message;
+    
+    input.parentNode.appendChild(errorDiv);
+}
+
+function clearInputError(input) {
+    input.classList.remove('is-invalid');
+    const existingError = input.parentNode.querySelector('.invalid-feedback');
+    if (existingError) {
+        existingError.remove();
+    }
 }
 
 function addKeyboardNavigationHelpers() {
