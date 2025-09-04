@@ -20,7 +20,7 @@ def learn():
             markdown_content = f.read()
         
         # Convert markdown to HTML with senior-friendly styling
-        html_content = markdown.markdown(markdown_content, extensions=['extra'])
+        html_content = markdown.markdown(markdown_content, extensions=['extra', 'toc'])
         
         # Add senior-friendly CSS classes to the HTML
         html_content = format_scam_content(html_content)
@@ -34,16 +34,84 @@ def learn():
 
 def format_scam_content(html_content):
     """Add senior-friendly styling classes to the generated HTML"""
-    # Add classes for better styling
-    html_content = html_content.replace('<h1>', '<h1 class="display-4 fw-bold text-primary mb-4">')
-    html_content = html_content.replace('<h2>', '<h2 class="h3 fw-bold text-dark mt-5 mb-3 border-bottom border-2 border-primary pb-2">')
-    html_content = html_content.replace('<p><strong>Summary:</strong>', '<div class="alert alert-info"><p class="mb-0 fs-5"><strong>Summary:</strong>')
-    html_content = html_content.replace('<p><strong>How it works:</strong>', '</div><div class="mt-3 mb-3"><h4 class="text-danger mb-2">How it works:</h4><ul class="list-group list-group-flush">')
-    html_content = html_content.replace('<p><strong>Red Flags:</strong>', '</ul></div><div class="mt-3 mb-3"><h4 class="text-warning mb-2">Red Flags:</h4><ul class="list-group list-group-flush">')
-    html_content = html_content.replace('<p><strong>What to Do:</strong>', '</ul></div><div class="mt-3 mb-3"><h4 class="text-success mb-2">What to Do:</h4><ul class="list-group list-group-flush">')
-    html_content = html_content.replace('<p><strong>Quick Script:</strong>', '</ul></div><div class="alert alert-primary mt-3"><h5>Quick Script:</h5>')
-    html_content = html_content.replace('<p><strong>Report &amp; Help:</strong>', '</div><div class="alert alert-secondary mt-3"><h5>Report & Help:</h5>')
-    html_content = html_content.replace('<p><strong>Prevention Tips</strong>', '<div class="alert alert-success mt-5 p-4"><h3 class="text-center mb-4">Prevention Tips</h3>')
+    import re
+    
+    # Find all h2 headers (scam titles) 
+    h2_pattern = r'<h2>(.*?)</h2>'
+    matches = re.findall(h2_pattern, html_content)
+    
+    # Style the main title first
+    html_content = html_content.replace('<h1>', '<h1 class="display-4 fw-bold text-primary mb-3">')
+    
+    # Create index HTML after title
+    if matches:
+        index_html = '''
+        <div class="scam-index bg-light p-4 rounded-3 mb-5">
+            <h3 class="text-center mb-4"><i class="fas fa-list me-2"></i>Quick Navigation</h3>
+            <div class="row">
+        '''
+        
+        for i, match in enumerate(matches[:10]):
+            clean_title = re.sub(r'<.*?>', '', match).strip()
+            anchor_id = f"scam-{i+1}"
+            
+            index_html += f'''
+                <div class="col-md-6 mb-2">
+                    <a href="#{anchor_id}" class="btn btn-outline-primary btn-sm d-block text-start">
+                        <i class="fas fa-chevron-right me-2"></i>{clean_title}
+                    </a>
+                </div>
+            '''
+        
+        index_html += '</div></div>'
+        
+        # Insert index after the first paragraph 
+        first_p_end = html_content.find('</p>')
+        if first_p_end != -1:
+            html_content = html_content[:first_p_end + 4] + index_html + html_content[first_p_end + 4:]
+    
+    # Transform each scam section
+    for i, match in enumerate(matches[:10]):
+        anchor_id = f"scam-{i+1}"
+        old_h2 = f'<h2>{match}</h2>'
+        new_h2 = f'''<div class="scam-section mb-5" id="{anchor_id}">
+<h2 class="h3 fw-bold text-white mb-4 p-3 bg-primary rounded">
+    <i class="fas fa-exclamation-triangle me-2"></i>{match}
+</h2>'''
+        html_content = html_content.replace(old_h2, new_h2)
+    
+    # Style subsections consistently
+    html_content = re.sub(r'<p><strong>Summary:</strong>', 
+        '<div class="section-content"><div class="mb-3"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-info-circle me-2"></i>Summary</h5><p class="fs-5">', 
+        html_content)
+    
+    html_content = re.sub(r'<p><strong>How it works:</strong>', 
+        '</p></div><div class="mb-3"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-cog me-2"></i>How it works</h5>', 
+        html_content)
+    
+    html_content = re.sub(r'<p><strong>Red Flags:</strong>', 
+        '</div><div class="mb-3"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-flag me-2"></i>Red Flags</h5>', 
+        html_content)
+    
+    html_content = re.sub(r'<p><strong>What to Do:</strong>', 
+        '</div><div class="mb-3"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-shield-alt me-2"></i>What to Do</h5>', 
+        html_content)
+    
+    html_content = re.sub(r'<p><strong>Quick Script:</strong>', 
+        '</div><div class="mb-3"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-comment me-2"></i>Quick Script</h5><div class="alert alert-info">', 
+        html_content)
+    
+    html_content = re.sub(r'<p><strong>Report &amp; Help:</strong>', 
+        '</div></div><div class="mb-4"><h5 class="fw-bold text-primary mb-2"><i class="fas fa-phone me-2"></i>Report & Help</h5>', 
+        html_content)
+    
+    # Close sections properly
+    html_content = re.sub(r'<hr />', '</div></div></div><hr class="my-5" />', html_content)
+    
+    # Style links as buttons
+    html_content = re.sub(r'<a href="([^"]+)">([^<]+)</a>', 
+        r'<a href="\1" target="_blank" class="btn btn-sm btn-outline-primary me-2 mb-2"><i class="fas fa-external-link-alt me-1"></i>\2</a>', 
+        html_content)
     
     return html_content
 
