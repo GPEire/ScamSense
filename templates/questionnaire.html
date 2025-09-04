@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+
+{% block title %}Scam Checker - Answer Questions{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="text-center mb-4">
+            <h1 class="display-5 mb-3">Let's Check This Message</h1>
+            <p class="lead fs-4">
+                Answer these questions about the message you received. 
+                Don't worry - we'll guide you through each step.
+            </p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container mb-4">
+            <div class="progress" style="height: 12px;">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 20%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5"></div>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <small class="text-muted">Step <span id="current-step">1</span> of 5</small>
+                <small class="text-muted" id="progress-text">Message Type</small>
+            </div>
+        </div>
+
+        <form method="POST" action="{{ url_for('submit_questionnaire') }}" class="questionnaire-form" id="dynamic-form">
+            
+            <!-- Step 1: Message Type -->
+            <div class="form-step" id="step-1">
+                <div class="form-section mb-5">
+                    <h2 class="section-title">
+                        <span class="step-badge">1</span>
+                        What type of message did you receive?
+                    </h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="radio" class="btn-check" name="message_type" id="email" value="email" required>
+                            <label class="btn btn-outline-primary btn-lg w-100 p-3" for="email">
+                                <i class="fas fa-envelope fa-2x d-block mb-2"></i>
+                                Email
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" class="btn-check" name="message_type" id="phone_call" value="phone_call" required>
+                            <label class="btn btn-outline-primary btn-lg w-100 p-3" for="phone_call">
+                                <i class="fas fa-phone fa-2x d-block mb-2"></i>
+                                Phone Call
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" class="btn-check" name="message_type" id="text_message" value="text_message" required>
+                            <label class="btn btn-outline-primary btn-lg w-100 p-3" for="text_message">
+                                <i class="fas fa-sms fa-2x d-block mb-2"></i>
+                                Text Message
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" class="btn-check" name="message_type" id="letter" value="letter" required>
+                            <label class="btn btn-outline-primary btn-lg w-100 p-3" for="letter">
+                                <i class="fas fa-mail-bulk fa-2x d-block mb-2"></i>
+                                Letter/Mail
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-primary btn-lg px-4" id="next-step-1" disabled>
+                            <i class="fas fa-arrow-right me-2"></i>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Message-specific questions -->
+            <div class="form-step" id="step-2" style="display: none;">
+                <!-- Phone Call specific questions -->
+                <div id="phone-questions" class="message-type-questions" style="display: none;">
+                    <div class="form-section mb-5">
+                        <h2 class="section-title">
+                            <span class="step-badge">2</span>
+                            About the Phone Call
+                        </h2>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fs-5">Was it an automated message or recording?</label>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="is_automated" id="automated_yes" value="yes">
+                                    <label class="btn btn-outline-primary btn-lg w-100 p-3" for="automated_yes">
+                                        <i class="fas fa-robot fa-2x d-block mb-2"></i>
+                                        Yes, it was a recording
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="is_automated" id="automated_no" value="no">
+                                    <label class="btn btn-outline-primary btn-lg w-100 p-3" for="automated_no">
+                                        <i class="fas fa-user fa-2x d-block mb-2"></i>
+                                        No, it was a real person
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="phone_number" class="form-label fs-5">What phone number did they call from? (Optional)</label>
+                            <input type="text" class="form-control form-control-lg" id="phone_number" name="sender_info" 
+                                   placeholder="Example: 1800 123 456 or Unknown">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email specific questions -->
+                <div id="email-questions" class="message-type-questions" style="display: none;">
+                    <div class="form-section mb-5">
+                        <h2 class="section-title">
+                            <span class="step-badge">2</span>
+                            About the Email
+                        </h2>
+                        
+                        <div class="mb-4">
+                            <label for="email_address" class="form-label fs-5">What email address did it come from? (Optional)</label>
+                            <input type="text" class="form-control form-control-lg" id="email_address" name="sender_info" 
+                                   placeholder="Example: support@company.com.au">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email_subject" class="form-label fs-5">What was the subject line?</label>
+                            <input type="text" class="form-control form-control-lg" id="email_subject" name="email_subject" 
+                                   placeholder="Example: Your account will be closed">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Message specific questions -->
+                <div id="text-questions" class="message-type-questions" style="display: none;">
+                    <div class="form-section mb-5">
+                        <h2 class="section-title">
+                            <span class="step-badge">2</span>
+                            About the Text Message
+                        </h2>
+                        
+                        <div class="mb-4">
+                            <label for="text_number" class="form-label fs-5">What number sent the text? (Optional)</label>
+                            <input type="text" class="form-control form-control-lg" id="text_number" name="sender_info" 
+                                   placeholder="Example: 0400 123 456 or short code like 12345">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fs-5">Did the text contain links or attachments?</label>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="has_links" id="links_yes" value="yes">
+                                    <label class="btn btn-outline-warning btn-lg w-100 p-3" for="links_yes">
+                                        <i class="fas fa-link fa-2x d-block mb-2"></i>
+                                        Yes, it had links
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="has_links" id="links_no" value="no">
+                                    <label class="btn btn-outline-primary btn-lg w-100 p-3" for="links_no">
+                                        <i class="fas fa-times fa-2x d-block mb-2"></i>
+                                        No links
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Letter/Mail specific questions -->
+                <div id="letter-questions" class="message-type-questions" style="display: none;">
+                    <div class="form-section mb-5">
+                        <h2 class="section-title">
+                            <span class="step-badge">2</span>
+                            About the Letter
+                        </h2>
+                        
+                        <div class="mb-4">
+                            <label for="return_address" class="form-label fs-5">Was there a return address? (Optional)</label>
+                            <input type="text" class="form-control form-control-lg" id="return_address" name="sender_info" 
+                                   placeholder="Example: PO Box 123, Sydney NSW">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fs-5">Did the letter look official or professional?</label>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="looks_official" id="official_yes" value="yes">
+                                    <label class="btn btn-outline-primary btn-lg w-100 p-3" for="official_yes">
+                                        <i class="fas fa-certificate fa-2x d-block mb-2"></i>
+                                        Yes, looked official
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="radio" class="btn-check" name="looks_official" id="official_no" value="no">
+                                    <label class="btn btn-outline-warning btn-lg w-100 p-3" for="official_no">
+                                        <i class="fas fa-question-circle fa-2x d-block mb-2"></i>
+                                        No, seemed unprofessional
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-3" id="back-step-2">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4" id="next-step-2">
+                        <i class="fas fa-arrow-right me-2"></i>
+                        Next
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Organization and Request Details -->
+            <div class="form-step" id="step-3" style="display: none;">
+                <div class="form-section mb-5">
+                    <h2 class="section-title">
+                        <span class="step-badge">3</span>
+                        Tell us about the organization and request
+                    </h2>
+                    
+                    <div class="mb-4">
+                        <label for="organization" class="form-label fs-5">
+                            What organization did they claim to be from? (Optional)
+                        </label>
+                        <input type="text" class="form-control form-control-lg" id="organization" name="organization" 
+                               placeholder="Example: Your bank, Telstra, Australia Post, ATO, etc.">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="main_request" class="form-label fs-5">
+                            <span class="text-danger">*</span> What did they want or ask you to do?
+                        </label>
+                        <textarea class="form-control form-control-lg" id="main_request" name="main_request" 
+                                  rows="4" required
+                                  placeholder="Example: They wanted me to pay a bill, verify my account, claim a prize, etc."></textarea>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-3" id="back-step-3">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4" id="next-step-3">
+                        <i class="fas fa-arrow-right me-2"></i>
+                        Next
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Warning Signs - Part 1 -->
+            <div class="form-step" id="step-4" style="display: none;">
+                <div class="form-section mb-5">
+                    <h2 class="section-title">
+                        <span class="step-badge">4</span>
+                        Warning Signs - Financial Requests
+                    </h2>
+                    <p class="fs-5 text-muted mb-4">
+                        Answer these questions about what they asked for. Select "Yes" or "No" for each.
+                    </p>
+
+                    <div class="checklist-container">
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they ask for money or payment?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="asks_for_money" id="money_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="money_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="asks_for_money" id="money_no" value="no">
+                                <label class="btn btn-outline-success" for="money_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they ask for personal information (Medicare number, bank details, passwords)?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="asks_for_personal_info" id="personal_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="personal_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="asks_for_personal_info" id="personal_no" value="no">
+                                <label class="btn btn-outline-success" for="personal_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they ask for payment with gift cards, wire transfer, or cryptocurrency?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="requests_immediate_payment" id="payment_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="payment_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="requests_immediate_payment" id="payment_no" value="no">
+                                <label class="btn btn-outline-success" for="payment_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-3" id="back-step-4">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4" id="next-step-4">
+                        <i class="fas fa-arrow-right me-2"></i>
+                        Next
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: Warning Signs - Part 2 -->
+            <div class="form-step" id="step-5" style="display: none;">
+                <div class="form-section mb-5">
+                    <h2 class="section-title">
+                        <span class="step-badge">5</span>
+                        Warning Signs - Pressure and Threats
+                    </h2>
+                    <p class="fs-5 text-muted mb-4">
+                        Final questions about the message's tone and urgency.
+                    </p>
+
+                    <div class="checklist-container">
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they say you must act immediately or something bad will happen?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="urgent_action_required" id="urgent_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="urgent_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="urgent_action_required" id="urgent_no" value="no">
+                                <label class="btn btn-outline-success" for="urgent_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they threaten you (arrest, legal action, account closure)?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="threatens_consequences" id="threats_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="threats_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="threatens_consequences" id="threats_no" value="no">
+                                <label class="btn btn-outline-success" for="threats_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they offer you an unexpected prize or money?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="offers_unexpected_prize" id="prize_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="prize_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="offers_unexpected_prize" id="prize_no" value="no">
+                                <label class="btn btn-outline-success" for="prize_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Is the sender someone you don't know or weren't expecting to hear from?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="sender_unknown" id="unknown_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="unknown_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="sender_unknown" id="unknown_no" value="no">
+                                <label class="btn btn-outline-success" for="unknown_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did the message have poor grammar or spelling mistakes?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="grammar_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="poor_grammar_spelling" id="grammar_no" value="no">
+                                <label class="btn btn-outline-success" for="grammar_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they ask you to click on links or download something?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="suspicious_links" id="links_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="links_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="suspicious_links" id="links_no" value="no">
+                                <label class="btn btn-outline-success" for="links_no">No</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <span class="checklist-question">Did they ask you not to tell anyone else about this?</span>
+                            <div class="checklist-options">
+                                <input type="radio" class="btn-check" name="requests_secrecy" id="secrecy_yes" value="yes">
+                                <label class="btn btn-outline-danger" for="secrecy_yes">Yes</label>
+                                <input type="radio" class="btn-check" name="requests_secrecy" id="secrecy_no" value="no">
+                                <label class="btn btn-outline-success" for="secrecy_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-3" id="back-step-5">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg px-5 py-3 cta-button" id="submit-form">
+                        <i class="fas fa-search me-3"></i>
+                        Check for Scams
+                    </button>
+                </div>
+            </div>
+
+            <!-- Privacy Notice -->
+            <div class="text-center mt-3">
+                <small class="text-muted fs-6">
+                    <i class="fas fa-lock me-1"></i>
+                    Your information is private and will not be stored
+                </small>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

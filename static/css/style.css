@@ -1,0 +1,404 @@
+/* Senior-friendly styles with large fonts and high contrast */
+
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    
+    /* Senior-friendly typography */
+    --base-font-size: 1.125rem; /* 18px */
+    --large-font-size: 1.25rem;  /* 20px */
+    --xl-font-size: 1.5rem;      /* 24px */
+    --xxl-font-size: 2rem;       /* 32px */
+}
+
+/* Base styles with improved readability */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: var(--base-font-size);
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--dark-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Enhanced button styles */
+.btn {
+    font-size: var(--large-font-size);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-lg {
+    font-size: var(--xl-font-size);
+    padding: 1rem 2rem;
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.25);
+    outline: none;
+}
+
+/* Primary CTA button */
+.cta-button {
+    font-size: 1.75rem !important;
+    padding: 1.25rem 3rem !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    text-transform: none;
+    font-weight: 700;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+}
+
+/* Form styles for better accessibility */
+.form-control {
+    font-size: var(--large-font-size);
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+}
+
+.form-control-lg {
+    font-size: var(--xl-font-size);
+    padding: 1rem 1.25rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    outline: none;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--dark-color);
+}
+
+/* Dynamic form specific styles */
+.questionnaire-form {
+    background: white;
+}
+
+.form-step {
+    min-height: 400px;
+    transition: opacity 0.3s ease;
+}
+
+.message-type-questions {
+    transition: opacity 0.3s ease;
+}
+
+.form-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #e9ecef;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.step-badge {
+    background: var(--primary-color);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Radio button cards */
+.btn-check:checked + .btn-outline-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn-outline-primary {
+    border-width: 2px;
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Checklist styles */
+.checklist-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+}
+
+.checklist-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.checklist-question {
+    font-size: var(--large-font-size);
+    font-weight: 600;
+    color: var(--dark-color);
+    line-height: 1.4;
+}
+
+.checklist-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.checklist-options .btn {
+    min-width: 80px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Alert styles for results */
+.alert-lg {
+    padding: 2rem;
+    border-radius: 12px;
+    border-width: 2px;
+}
+
+.alert-lg .alert-heading {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Result cards */
+.result-card,
+.explanation-card,
+.warning-signs-card,
+.next-steps-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.steps-list .step-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Feature cards on home page */
+.feature-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Step cards */
+.step-card {
+    height: 100%;
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+/* Hero section */
+.hero-icon {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .btn-outline-primary {
+        border-width: 3px;
+    }
+    
+    .form-control {
+        border-width: 3px;
+    }
+    
+    .checklist-item {
+        border: 2px solid #333;
+    }
+}
+
+/* Large text mode support */
+@media (prefers-reduced-motion: no-preference) {
+    .btn,
+    .form-control,
+    .alert {
+        transition: all 0.2s ease;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cta-button {
+        font-size: 1.5rem !important;
+        padding: 1rem 2rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .checklist-item {
+        padding: 1rem;
+    }
+    
+    .checklist-options {
+        justify-content: center;
+    }
+    
+    .step-badge {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.25rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .btn,
+    .navbar,
+    footer {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .alert {
+        border: 2px solid #333 !important;
+        background: white !important;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+.btn:focus-visible,
+.form-control:focus-visible,
+.btn-check:focus-visible + .btn {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Improved color contrast */
+.text-muted {
+    color: #555 !important;
+}
+
+.bg-light {
+    background-color: #f5f5f5 !important;
+}
+
+/* Loading state for form submission */
+.form-submitting {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.form-submitting .btn {
+    position: relative;
+}
+
+.form-submitting .btn::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
