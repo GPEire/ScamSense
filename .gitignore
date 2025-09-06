@@ -1,0 +1,8 @@
+# Environment files
+.env
+.env.*.local
+
+# System clutter
+.DS_Store
+node_modules/
+__pycache__/
