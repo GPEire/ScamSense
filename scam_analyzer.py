@@ -3,22 +3,38 @@ import os
 from openai import OpenAI
 import logging
 
-# the newest OpenAI model is "gpt-5" which was released August 7, 2025.
-# do not change this unless explicitly requested by the user
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "your-openai-api-key-here")
-openai_client = OpenAI(api_key=OPENAI_API_KEY)
+# Using GPT-3.5 Turbo for scam analysis as requested by the user
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+openai_client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
+
+
+def _default_response():
+    return {
+        'risk_level': 'unknown',
+        'is_likely_scam': None,
+        'confidence': 0,
+        'explanation': "We were unable to analyze this message. When in doubt, it's best to be cautious.",
+        'next_steps': [
+            'Do not provide any personal information or money',
+            'Contact the organization directly using official contact information',
+            'Ask a trusted family member or friend for advice'
+        ],
+        'warning_signs': ['Unable to complete analysis - exercise caution']
+    }
+
 
 def analyze_scam_indicators(scam_data):
-    """
-    Analyze scam indicators using OpenAI GPT-5
-    Returns structured analysis for seniors
-    """
+    """Analyze scam indicators using OpenAI GPT-3.5 Turbo"""
+    if openai_client is None:
+        logging.error("OpenAI API key not configured")
+        return _default_response()
+
     try:
         # Build the prompt with user data
         prompt = build_analysis_prompt(scam_data)
-        
+
         response = openai_client.chat.completions.create(
-            model="gpt-5",
+            model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "system",
@@ -31,34 +47,22 @@ def analyze_scam_indicators(scam_data):
                     "'next_steps': ['step1', 'step2', 'step3'], 'warning_signs': ['sign1', 'sign2']}"
                 },
                 {
-                    "role": "user", 
+                    "role": "user",
                     "content": prompt
                 }
             ],
             response_format={"type": "json_object"},
             temperature=0.3  # Lower temperature for more consistent analysis
         )
-        
+
         result = json.loads(response.choices[0].message.content)
-        
+
         # Validate and sanitize the response
         return validate_analysis_result(result)
-        
+
     except Exception as e:
         logging.error(f"OpenAI analysis failed: {str(e)}")
-        # Return safe default response
-        return {
-            'risk_level': 'unknown',
-            'is_likely_scam': None,
-            'confidence': 0,
-            'explanation': 'We were unable to analyze this message. When in doubt, it\'s best to be cautious.',
-            'next_steps': [
-                'Do not provide any personal information or money',
-                'Contact the organization directly using official contact information',
-                'Ask a trusted family member or friend for advice'
-            ],
-            'warning_signs': ['Unable to complete analysis - exercise caution']
-        }
+        return _default_response()
 
 def build_analysis_prompt(scam_data):
     """Build structured prompt for OpenAI analysis"""
