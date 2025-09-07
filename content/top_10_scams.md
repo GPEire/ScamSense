@@ -1,275 +1,259 @@
-# Top 10 Modern Scams Targeting Senior Citizens (2024–2025)
+# Scam Checker: Stay Safe From Scams (2025 Edition)
 
-*A practical guide for older adults and caregivers. Each scam includes simple red flags, action steps, and where to get help.*
-
----
-
-## 1. Tech Support Scams
-**Summary:** Scammers pretend to be computer experts to trick you into giving remote access or money.  
-
-**How it works:**  
-- A popup or call warns your computer has a virus.  
-- They ask you to install remote access software.  
-- They demand payment for fake fixes.  
-- They steal banking details while connected.  
-
-**Red Flags:**  
-- Unexpected calls about "computer problems."  
-- Urgent warnings with phone numbers to call.  
-- Requests to download software from strangers.  
-
-**What to Do:**  
-- Close popups; don't click.  
-- Hang up on unsolicited "tech support" calls.  
-- Call your computer or internet provider directly if worried.  
-
-**Quick Script:**  
-> "I don't give anyone remote access to my computer. Goodbye."  
-
-**Report & Help:**  
-- **Scamwatch (ACCC):** [scamwatch.gov.au](https://www.scamwatch.gov.au)  
-- **IDCARE (AU identity support):** 1800 595 160  
+Helping seniors and caregivers recognize scams and stop them in their tracks.
 
 ---
 
-## 2. Romance/Sweetheart Scams
-**Summary:** Criminals build fake online relationships, then ask for money.  
+## Your Golden Rule
+**STOP – CHECK – TALK**  
+- **STOP** – Don’t rush. Hang up. Close the message.  
+- **CHECK** – Call the real company, family, or agency using a trusted number.  
+- **TALK** – Share with a family member or friend before acting.  
 
-**How it works:**  
-- Meet on dating site or social media.  
-- Daily contact builds trust.  
-- Sudden crisis overseas, ask for urgent money.  
-- Disappear after payment.  
+Keep this motto in mind whenever something feels “off.”  
 
-**Red Flags:**  
+---
+
+## Top 10 Scams Seniors Face & How to Beat Them
+
+### 1. Tech Support Scams
+**What Happens**  
+A caller or popup says your computer has a virus. They pressure you to give them control or pay for “repairs.”  
+
+**Red Flags**  
+- Unsolicited calls about “problems.”  
+- Popups with scary warnings and a number to call.  
+- Requests to download software or share bank details.  
+
+**Quick Script**  
+> “I never give out information. I’ll call my provider directly.”  
+*(hang up immediately)*  
+
+**Safe Action**  
+- Close popups without clicking.  
+- Only contact your provider using the number on your bill.  
+
+**Report & Help**  
+- Scamwatch  
+- IDCARE: 1800 595 160  
+
+---
+
+### 2. Romance / Sweetheart Scams
+**What Happens**  
+A “friend” or “partner” online builds trust, then asks for money due to an “emergency.”  
+
+**Red Flags**  
 - Avoids meeting in person.  
-- Asks for secrecy.  
+- Wants secrecy.  
 - Requests for money, gift cards, or wire transfers.  
 
-**What to Do:**  
-- Never send money to someone you haven't met.  
-- Reverse image search profile photos.  
-- Talk to a trusted family member before sending funds.  
+**Quick Script**  
+> “I don’t send money to people I haven’t met in person.”  
 
-**Quick Script:**  
-> "I don't send money to people I've only met online."  
+**Safe Action**  
+- Never send money or gift cards.  
+- Reverse-image search profile pictures if unsure.  
+- Discuss with family before acting.  
 
-**Report & Help:**  
-- **Scamwatch**  
-- **Dating site/platform "Report" button**  
-
----
-
-## 3. Grandparent Scams
-**Summary:** Scammers pretend to be grandchildren in trouble and need money fast.  
-
-**How it works:**  
-- Caller: "Hi Grandma, do you know who this is?"  
-- Senior guesses a name; scammer uses it.  
-- Fake emergency (jail, accident, bills).  
-- Asks for urgent money, secrecy.  
-
-**Red Flags:**  
-- Emotional pleas not to tell parents.  
-- Requests for wire transfer or gift cards.  
-- "Accident" or "arrest" emergencies.  
-
-**What to Do:**  
-- Hang up and call family directly.  
-- Verify with another trusted relative.  
-
-**Quick Script:**  
-> "I'll call your parents to check on you."  
-
-**Report & Help:**  
-- **Scamwatch**  
-- **Local police (if money sent)**  
+**Report & Help**  
+- Scamwatch  
+- Use “Report” button on the dating site  
 
 ---
 
-## 4. Government Impersonation Scams
-**Summary:** Criminals pose as Medicare, Tax Office, or Social Security to scare you.  
+### 3. Grandparent Scams
+**What Happens**  
+A scammer pretends to be a grandchild in trouble, needing money fast.  
 
-**How it works:**  
-- Threat of lost benefits, fines, or arrest.  
-- Demand personal or banking details.  
-- Pressure to act immediately.  
+**Red Flags**  
+- Caller says “Grandma, guess who this is?”  
+- Urgent request for secrecy.  
+- “Accident” or “arrest” story.  
 
-**Red Flags:**  
-- Calls claiming "you'll be arrested."  
-- Requests for payment in unusual ways (gift cards, crypto).  
-- Caller demands secrecy.  
+**Quick Script**  
+> “I need to call your parents first.” *(hang up and call family on a known number)*  
 
-**What to Do:**  
-- Hang up.  
-- Call the official agency using its listed number.  
-- Never share Medicare or tax numbers over the phone.  
+**Safe Action**  
+- Always verify with another relative.  
+- Never send money based on a single call.  
 
-**Quick Script:**  
-> "I only deal with government through official letters and numbers I look up myself."  
-
-**Report & Help:**  
-- **ATO (Tax Office):** 1800 008 540  
-- **Services Australia (Medicare/benefits):** 132 011  
+**Report & Help**  
+- Scamwatch  
+- Local police if money was sent  
 
 ---
 
-## 5. Medicare/Health Insurance Scams
-**Summary:** Fake agents pretend to fix Medicare problems or sell false insurance.  
+### 4. Government Impersonation Scams
+**What Happens**  
+Someone pretends to be Medicare, the Tax Office, or Social Security, threatening fines, arrest, or loss of benefits.  
 
-**How it works:**  
-- Call about "problems" with Medicare card.  
-- Request personal info to "update" your details.  
-- Use info for identity theft or fake billing.  
+**Red Flags**  
+- Caller says “You will be arrested.”  
+- Payment demanded by gift card or crypto.  
+- Request for Medicare/tax numbers.  
 
-**Red Flags:**  
-- Caller claims to be from Medicare but asks for full details.  
-- Offers "free services" if you give Medicare or bank numbers.  
+**Quick Script**  
+> “I don’t share details over the phone. I’ll call the agency myself.”  
 
-**What to Do:**  
-- Hang up.  
-- Contact Medicare directly at 132 011.  
-- Keep your card number private.  
+**Safe Action**  
+- Hang up immediately.  
+- Call the official number listed on a bill or government website.  
 
-**Quick Script:**  
-> "I'll call Medicare myself using the number on my card."  
-
-**Report & Help:**  
-- **Services Australia**  
-- **Scamwatch**  
+**Report & Help**  
+- ATO (Tax Office): 1800 008 540  
+- Services Australia (Medicare/benefits): 132 011  
 
 ---
 
-## 6. Investment & Financial Scams
-**Summary:** Fake investments promise high returns with no risk.  
+### 5. Medicare / Health Insurance Scams
+**What Happens**  
+Fake agents pretend to “update” Medicare details or sell bogus insurance.  
 
-**How it works:**  
-- "Advisors" call with offers.  
-- Promise returns above market rates.  
-- Encourage urgent large deposits.  
-- Money disappears.  
+**Red Flags**  
+- Caller asks for full card or banking details.  
+- Offers “free services” if you share numbers.  
 
-**Red Flags:**  
-- "Guaranteed" returns.  
+**Quick Script**  
+> “I don’t give Medicare details over the phone.”  
+
+**Safe Action**  
+- Contact Medicare directly: 132 011.  
+- Never share Medicare card or bank numbers by phone.  
+
+**Report & Help**  
+- Services Australia  
+- Scamwatch  
+
+---
+
+### 6. Investment & Financial Scams
+**What Happens**  
+Fake “advisers” promise high returns with no risk.  
+
+**Red Flags**  
+- “Guaranteed” profits.  
 - Pressure to invest quickly.  
 - Unregistered companies.  
 
-**What to Do:**  
-- Only invest with licensed advisers (check ASIC).  
-- Consult your bank or financial planner.  
+**Quick Script**  
+> “I only deal with licensed advisers. Goodbye.”  
 
-**Quick Script:**  
-> "I don't make financial decisions over the phone."  
+**Safe Action**  
+- Verify advisers with ASIC register.  
+- Speak to your bank or trusted financial planner first.  
 
-**Report & Help:**  
-- **ASIC (check license):** [asic.gov.au](https://asic.gov.au)  
-- **Scamwatch**  
-
----
-
-## 7. Sweepstakes & Lottery Scams
-**Summary:** Fake prizes demand fees or taxes upfront.  
-
-**How it works:**  
-- Letter, call, or email about big winnings.  
-- Must pay "fees" or "taxes" first.  
-- More payments requested, no prize ever.  
-
-**Red Flags:**  
-- Must pay to receive prize.  
-- No entry into contest, yet you "won."  
-- Urgent time limits.  
-
-**What to Do:**  
-- If you didn't enter, you didn't win.  
-- Never pay fees for prizes.  
-
-**Quick Script:**  
-> "Real prizes don't require payment."  
-
-**Report & Help:**  
-- **Scamwatch**  
+**Report & Help**  
+- ASIC (check license)  
+- Scamwatch  
 
 ---
 
-## 8. AI Voice Cloning Scams
-**Summary:** Scammers use AI to copy voices of loved ones to demand money.  
+### 7. Sweepstakes & Lottery Scams
+**What Happens**  
+You’re told you’ve “won” a prize but must pay fees or taxes first.  
 
-**How it works:**  
-- Fake call using cloned voice of family.  
-- Claims accident, arrest, or emergency.  
-- Requests urgent wire transfer.  
+**Red Flags**  
+- You didn’t enter but “won.”  
+- Must pay upfront to claim.  
+- Urgent time limit.  
 
-**Red Flags:**  
-- Distressed call with unusual requests.  
-- Caller demands secrecy.  
+**Quick Script**  
+> “If I didn’t enter, I didn’t win.”  
 
-**What to Do:**  
-- Hang up, call family back on known number.  
-- Use a family "code word" for emergencies.  
+**Safe Action**  
+- Never pay to collect winnings.  
+- Delete suspicious letters or emails.  
 
-**Quick Script:**  
-> "I'll call you back on your usual number."  
-
-**Report & Help:**  
-- **Scamwatch**  
-- **IDCARE**  
+**Report & Help**  
+- Scamwatch  
 
 ---
 
-## 9. Online Shopping & Fake Charity Scams
-**Summary:** Fake websites sell products or collect "donations" that don't exist.  
+### 8. AI Voice Cloning Scams
+**What Happens**  
+Scammers use AI to mimic the voice of a loved one asking for urgent money.  
 
-**How it works:**  
-- Professional-looking site appears after disaster or sale ad.  
-- Senior donates or buys, never receives goods or services.  
+**Red Flags**  
+- Distressed voice demanding secrecy.  
+- Request for wire transfer or gift cards.  
 
-**Red Flags:**  
-- Website without ABN or contact info.  
-- Charity not listed on [acnc.gov.au](https://www.acnc.gov.au).  
+**Quick Script**  
+> “We use a family code word. Please say it.”  
 
-**What to Do:**  
-- Only shop on well-known retailers.  
-- Verify charities on ACNC register.  
+**Safe Action**  
+- Hang up and call your loved one back on their real number.  
+- Set up a family “safe word” for emergencies.  
 
-**Quick Script:**  
-> "I only donate through official, registered charities."  
-
-**Report & Help:**  
-- **ACNC Charity Register**  
-- **Scamwatch**  
+**Report & Help**  
+- Scamwatch  
+- IDCARE  
 
 ---
 
-## 10. Home Repair/Contractor Scams
-**Summary:** Fake contractors offer urgent repairs, demand upfront payment.  
+### 9. Online Shopping & Fake Charity Scams
+**What Happens**  
+Fraudulent websites sell goods or collect donations that don’t exist.  
 
-**How it works:**  
-- Knock on door after storm, claim roof damage.  
-- Show fake photos.  
-- Ask for cash or bank transfer upfront.  
+**Red Flags**  
+- Website without ABN or contact details.  
+- Charity not listed on ACNC register.  
+- Price or story seems “too good to be true.”  
 
-**Red Flags:**  
-- Contractor found you, not the other way around.  
+**Quick Script**  
+> “I only shop or donate through trusted sites.”  
+
+**Safe Action**  
+- Use well-known retailers.  
+- Verify charities on ACNC Charity Register.  
+
+**Report & Help**  
+- ACNC Charity Register  
+- Scamwatch  
+
+---
+
+### 10. Home Repair / Contractor Scams
+**What Happens**  
+Fake contractors knock after storms, claim damage, and demand upfront payment.  
+
+**Red Flags**  
+- They found you, not the other way around.  
 - No license or ID shown.  
-- Urgent demand for upfront payment.  
+- Demand for full cash payment upfront.  
 
-**What to Do:**  
-- Get 2–3 written quotes from licensed trades.  
+**Quick Script**  
+> “I’ll get written quotes from licensed trades before deciding.”  
+
+**Safe Action**  
+- Always get 2–3 written quotes.  
 - Never pay full amount upfront.  
 
-**Quick Script:**  
-> "I'll get a second opinion before any work."  
-
-**Report & Help:**  
-- **State Fair Trading Office**  
-- **Scamwatch**  
+**Report & Help**  
+- State Fair Trading Office  
+- Scamwatch  
 
 ---
 
-## Prevention Tips
-- Never share personal info with unsolicited callers.  
-- Verify identity through official channels.  
-- Be cautious with urgent requests for money.  
-- Talk to family before sending money.  
-- Report scams to **Scamwatch** and **IDCARE** immediately.  
+## Prevention Tips That Always Work
+- **Never share personal details** with unsolicited callers.  
+- **Don’t trust urgency** – scammers want you to rush.  
+- **Talk to family first** before sending money.  
+- **Write down emergency “safe words”** with loved ones.  
+- **Report every scam attempt** to Scamwatch or IDCARE.  
+
+---
+
+## Practice Section: Test Yourself
+Read these short examples. Is it a scam?  
+
+1. *“Grandma, I’m in jail—don’t tell Mom, send $2,000 in gift cards now.”* → **Scam**  
+2. *Email: “Congratulations! You’ve won the lottery. Pay $300 tax to receive your prize.”* → **Scam**  
+3. *Call from your bank: “We’ve noticed unusual activity. Please hang up and call us back using the number on your card.”* → **Legitimate**  
+
+---
+
+## Memory Hook
+Whenever you feel unsure: **STOP – CHECK – TALK.**  
+
+Stick this phrase by your phone, fridge, or computer. It could save you thousands of dollars and endless stress.  
