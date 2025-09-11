@@ -1,50 +1,490 @@
 {% extends "base.html" %}
 {% block title %}Recognize a Scam – Scam Checker{% endblock %}
 {% block content %}
-  <section class="hero-section mb-6">
-    <h1 class="text-3xl md:text-4xl font-bold">Recognize a Scam</h1>
-    <p class="mt-2 text-lg">Learn the signals, avoid the traps, and know exactly what to do.</p>
-  </section>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-shield-alt"></i> Scam Checker</h1>
+      <p>Stay Safe From Scams (2025 Edition)<br>Helping seniors and caregivers recognize scams and stop them in their tracks</p>
+    </header>
 
-  <section class="alert mb-6" role="note" aria-label="Golden rule">
-    <div class="p-4 rounded-xl" style="background:#FFF7E6; border:1px solid #FACC15;">
-      <p class="text-xl md:text-2xl font-semibold">STOP – CHECK – TALK</p>
-      <ul class="mt-2 ml-5 list-disc text-base md:text-lg">
-        <li><strong>STOP</strong> — Don’t rush. Hang up. Close the message.</li>
-        <li><strong>CHECK</strong> — Call the real company or family using a trusted number.</li>
-        <li><strong>TALK</strong> — Share with a friend/family member before acting.</li>
-      </ul>
+    <div class="golden-rule">
+      <h2><i class="fas fa-exclamation-triangle"></i> Your Golden Rule</h2>
+      <div class="rule-steps">
+        <div class="rule-step">
+          <strong>STOP</strong>
+          <p>Don't rush. Hang up. Close the message.</p>
+        </div>
+        <div class="rule-step">
+          <strong>CHECK</strong>
+          <p>Call the real company, family, or agency using a trusted number.</p>
+        </div>
+        <div class="rule-step">
+          <strong>TALK</strong>
+          <p>Share with a family member or friend before acting.</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: var(--large-font-size); font-style: italic;">Keep this motto in mind whenever something feels "off."</p>
     </div>
-  </section>
 
-  <!-- Cheat sheet download -->
-  <div class="action-section mb-8">
-    <a class="btn" href="/static/Scam_Checker_Cheat_Sheet.pdf" download>
-      Download 1-Page Cheat Sheet (PDF)
-    </a>
-    <p class="mt-2 text-sm">Print this and keep it near your phone or computer.</p>
+
+    <!-- Rendered markdown content will be inserted here -->
+    <article class="scam-content">
+      {{ scam_content|safe }}
+    </article>
+
+    <div class="prevention-tips">
+      <h2><i class="fas fa-lightbulb"></i> Prevention Tips That Always Work</h2>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <i class="fas fa-user-slash"></i>
+          <span>Never share personal details with unsolicited callers</span>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-clock"></i>
+          <span>Don't trust urgency – scammers want you to rush</span>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-users"></i>
+          <span>Talk to family first before sending money</span>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-key"></i>
+          <span>Write down emergency "safe words" with loved ones</span>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>Report every scam attempt to Scamwatch or IDCARE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2><i class="fas fa-brain"></i> Practice Section: Test Yourself</h2>
+      <p style="margin-bottom: 1.5rem; font-size: var(--large-font-size); color: var(--secondary-color);">Read these short examples. Is it a scam?</p>
+      
+      <div class="practice-item">
+        <strong>1.</strong> "Grandma, I'm in jail—don't tell Mom, send $2,000 in gift cards now." 
+        → <strong style="color: var(--danger-color);">SCAM</strong>
+      </div>
+      <div class="practice-item">
+        <strong>2.</strong> Email: "Congratulations! You've won the lottery. Pay $300 tax to receive your prize." 
+        → <strong style="color: var(--danger-color);">SCAM</strong>
+      </div>
+      <div class="practice-item">
+        <strong>3.</strong> Call from your bank: "We've noticed unusual activity. Please hang up and call us back using the number on your card." 
+        → <strong style="color: var(--success-color);">LEGITIMATE</strong>
+      </div>
+    </div>
+
+    <div class="memory-hook">
+      <h2><i class="fas fa-brain"></i> Memory Hook</h2>
+      <p>Whenever you feel unsure:</p>
+      <strong>STOP – CHECK – TALK</strong>
+      <p style="font-size: var(--base-font-size); margin-top: 1rem; opacity: 0.9;">Stick this phrase by your phone, fridge, or computer. It could save you thousands of dollars and endless stress.</p>
+    </div>
+
+    <section class="mt-10">
+      <h2>Have a Suspicious Message?</h2>
+      <p>Use our guided checker to get personalized advice about whether a message might be a scam.</p>
+      <a class="btn" href="/questionnaire">Check a Message</a>
+    </section>
   </div>
 
-  <!-- Rendered markdown -->
-  <article class="scam-content">
-    {{ scam_content|safe }}
-  </article>
-
-  <section class="mt-10">
-    <h2>Have a Suspicious Message?</h2>
-    <p>Use our guided checker to get personalized advice about whether a message might be a scam.</p>
-    <a class="btn" href="/questionnaire">Check a Message</a>
-  </section>
-
   <style>
-    /* minimal, senior-friendly defaults—uses your project’s existing classes if present */
-    .btn { display:inline-block; padding:.9rem 1.1rem; border-radius:.75rem; border:1px solid #111; font-weight:600 }
-    .scam-content h2 { margin-top:2rem }
+    :root {
+      --primary-color: #0066cc;
+      --secondary-color: #6c757d;
+      --success-color: #28a745;
+      --danger-color: #dc3545;
+      --warning-color: #ffc107;
+      --info-color: #17a2b8;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      
+      /* Senior-friendly typography */
+      --base-font-size: 1.125rem; /* 18px */
+      --large-font-size: 1.25rem;  /* 20px */
+      --xl-font-size: 1.5rem;      /* 24px */
+      --xxl-font-size: 2rem;       /* 32px */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      background: var(--primary-color);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .header h1 {
+      font-size: var(--xxl-font-size);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: var(--large-font-size);
+      opacity: 0.95;
+    }
+
+    .golden-rule {
+      background: var(--danger-color);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    }
+
+    .golden-rule h2 {
+      font-size: var(--xxl-font-size);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .rule-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .rule-step {
+      background: rgba(255,255,255,0.15);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .rule-step strong {
+      font-size: var(--xl-font-size);
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .rule-step p {
+      font-size: var(--base-font-size);
+      line-height: 1.5;
+    }
+
+
+    .scam-card {
+      background: white;
+      border-radius: 12px;
+      padding: 0;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--light-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .scam-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .scam-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      border-bottom: 1px solid var(--light-color);
+      transition: background-color 0.2s ease;
+    }
+
+    .scam-header:hover {
+      background: #fafafa;
+    }
+
+    .scam-icon {
+      background: var(--primary-color);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .scam-title {
+      font-size: var(--xl-font-size);
+      color: var(--dark-color);
+      font-weight: 700;
+      flex-grow: 1;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover, .toggle-btn:focus {
+      background: var(--light-color);
+      color: var(--primary-color);
+      outline: none;
+    }
+
+    .scam-content {
+      display: block;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .scam-content.hidden {
+      display: none;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .content-section {
+      background: var(--light-color);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .content-section.red-flags {
+      border-left-color: var(--danger-color);
+    }
+
+    .content-section.safe-action {
+      border-left-color: var(--success-color);
+    }
+
+    .content-section.quick-script {
+      border-left-color: var(--warning-color);
+    }
+
+    .content-section.report-help {
+      border-left-color: var(--info-color);
+    }
+
+    .content-section h4 {
+      color: var(--dark-color);
+      margin-bottom: 1rem;
+      font-size: var(--large-font-size);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .content-section ul {
+      margin-left: 1rem;
+    }
+
+    .content-section li {
+      margin-bottom: 0.5rem;
+      font-size: var(--base-font-size);
+    }
+
+    .script-box {
+      background: #fff3cd;
+      color: var(--dark-color);
+      padding: 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-style: italic;
+      margin: 0.5rem 0;
+      border: 1px solid #ffeaa7;
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .prevention-tips {
+      background: var(--success-color);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+
+    .prevention-tips h2 {
+      margin-bottom: 2rem;
+      font-size: var(--xxl-font-size);
+      font-weight: 700;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .tip-item {
+      background: rgba(255,255,255,0.15);
+      padding: 1.25rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .tip-item i {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .practice-section {
+      background: var(--light-color);
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border: 2px solid #e9ecef;
+    }
+
+    .practice-section h2 {
+      color: var(--dark-color);
+      margin-bottom: 1.5rem;
+      font-size: var(--xxl-font-size);
+      font-weight: 700;
+    }
+
+    .practice-item {
+      background: white;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px solid #dee2e6;
+      font-size: var(--base-font-size);
+    }
+
+    .memory-hook {
+      background: var(--primary-color);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .memory-hook h2 {
+      font-size: var(--xxl-font-size);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .memory-hook p {
+      font-size: var(--large-font-size);
+    }
+
+    .memory-hook strong {
+      font-size: var(--xl-font-size);
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .btn { 
+      display:inline-block; 
+      padding:.9rem 1.1rem; 
+      border-radius:.75rem; 
+      border:1px solid #111; 
+      font-weight:600;
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #0052a3;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: var(--xl-font-size);
+      }
+
+      .header {
+        padding: 2rem 1.5rem;
+      }
+
+      .golden-rule {
+        padding: 2rem;
+      }
+
+      .rule-steps {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
     @media print {
-      .hero-section, .btn, .action-section, .alert { display:none !important; }
+      .btn,
+      .action-section,
+      .alert { display:none !important; }
       .scam-content { font-size:12pt !important; line-height:1.4 !important; }
       .scam-content h2 { page-break-before:always; margin-top:0 !important; }
       .scam-content h2:first-of-type { page-break-before:avoid; }
     }
   </style>
+
+  <script>
+    function toggleContent(scamId) {
+      const content = document.getElementById(`content-${scamId}`);
+      const toggle = document.getElementById(`toggle-${scamId}`);
+      const header = content.previousElementSibling;
+      
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        toggle.textContent = '▲';
+        header.setAttribute('aria-expanded', 'true');
+      } else {
+        content.classList.add('hidden');
+        toggle.textContent = '▼';
+        header.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+
+    // Keyboard navigation for headers
+    document.addEventListener('keydown', function(e) {
+      if (e.target.classList.contains('scam-header') && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+
+
+    // Initialize - show first scam by default, hide others
+    document.addEventListener('DOMContentLoaded', function() {
+      for (let i = 2; i <= 10; i++) {
+        const content = document.getElementById(`content-${i}`);
+        const toggle = document.getElementById(`toggle-${i}`);
+        if (content && toggle) {
+          content.classList.add('hidden');
+          toggle.textContent = '▼';
+        }
+      }
+    });
+  </script>
 {% endblock %}
